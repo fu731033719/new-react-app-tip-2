@@ -15,15 +15,31 @@ class TodoList extends Component {
         this.handleDeletItem = this.handleDeletItem.bind(this);
     }
     handleButtonClick () {
-        this.setState({
-            list: [...this.state.list, this.state.inputValue],
+        // this.setState({
+        //     list: [...this.state.list, this.state.inputValue],
+        //     inputValue: ''
+        // })
+
+        // this.setState((prevState) => ({
+        //     list: [...prevState.list, prevState.inputValue],
+        //     inputValue: ''
+        // }));
+        // console.log(this.ul.querySelectorAll('div')); setState的异步特性会影响有同步需求的DOM获取
+        this.setState((prevState) => ({
+            list: [...prevState.list, prevState.inputValue],
             inputValue: ''
-        })
+        }), () => {
+            console.log(this.ul.querySelectorAll('div'));
+        });
+        
     }
     handleInputChange (e) {
         this.setState({
             inputValue: e.target.value
         });
+        // this.setState({
+        //     inputValue: this.input.value
+        // });
     }
     handleDeletItem (index) {
         const list = [...this.state.list];
@@ -43,10 +59,10 @@ class TodoList extends Component {
         return  (
             <Fragment>
                 <div>
-                    <input value={this.state.inputValue} onChange={this.handleInputChange}/>
+                    <input value={this.state.inputValue} onChange={this.handleInputChange} ref={(input) => {this.input = input}}/>
                     <button className="red-btn" onClick={this.handleButtonClick}>add</button>
                 </div>
-                <ul>
+                <ul ref={(ul) => {this.ul = ul}}>
                     {this.getTodoItems()}
                 </ul>
             </Fragment>
