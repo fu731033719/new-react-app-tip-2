@@ -19,6 +19,13 @@ class TodoItem extends Component {
     componentWillUnmount () {
         console.log('child componentWillUnmount');
     }
+    shouldComponentUpdate (nextProps, nextState) {
+        if (nextProps.cotent !== this.props.cotent) {
+            return true;
+        } else {
+            return false;
+        }
+    }
     render () {
         console.log('child render');
         const { cotent, test } = this.props;

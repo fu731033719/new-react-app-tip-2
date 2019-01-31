@@ -1,5 +1,6 @@
 import React, {Component, Fragment} from 'react';
 import TodoItem from './TodoItem';
+import axios from 'axios';
 class TodoList extends Component {
     constructor (props) {
         super(props);
@@ -63,6 +64,11 @@ class TodoList extends Component {
     // 组件挂载完成时候执行
     componentDidMount () {
         console.log('componentDidMount');
+        axios.get('').then(res => {
+            console.log(res);
+        }).catch(err => {
+            console.log(err);
+        })
     }
     //组件被更新之前执行
     // shouldComponentUpdate () {
