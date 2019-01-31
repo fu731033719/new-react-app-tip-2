@@ -4,10 +4,7 @@ class TodoList extends Component {
     constructor (props) {
         super(props);
         this.state = {
-            list: [
-                'learn english',
-                'learn react'
-            ],
+            list: [],
             inputValue: ''
         }
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -55,7 +52,32 @@ class TodoList extends Component {
             })
         )
     }
+    //组件内props内修改时执行 一般在顶层组件内无效
+    componentWillReceiveProps () {
+        console.log('componentWillReceiveProps');
+    }
+    // 组件即将挂载时候执行
+    componentWillMount () {
+        console.log('componentWillMount');
+    }
+    // 组件挂载完成时候执行
+    componentDidMount () {
+        console.log('componentDidMount');
+    }
+    //组件被更新之前执行
+    // shouldComponentUpdate () {
+    //     console.log('shouldcomponentupdate');
+    //     return true;
+    // }
+    //组件被更新之前执行 且在shouldcomponentUpdate之后且其结果为true时执行
+    componentWillUpdate () {
+        console.log('componentWillUpdate');
+    }
+    componentDidUpdate () {
+        console.log('componentDidUpdate');
+    }
     render() {
+        console.log('parent render');
         return  (
             <Fragment>
                 <div>

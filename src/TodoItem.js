@@ -9,7 +9,18 @@ class TodoItem extends Component {
         const { handleDeletItem, index} = this.props;
         handleDeletItem(index);
     }
+    // 一个组件从父组件接受参数
+    // 如果该子组件是第一次在父组件内被渲染 则不会执行componentWillReceiveProps
+    // 如果该子组件已经在父组件内渲染过则会执行componentWillReceiveProps
+    componentWillReceiveProps() {
+        console.log('child componentWillReceiveProps');
+    }
+    // 当该组件将从页面中删除时执行该函数
+    componentWillUnmount () {
+        console.log('child componentWillUnmount');
+    }
     render () {
+        console.log('child render');
         const { cotent, test } = this.props;
         return (
             <div onClick={this.handleDeleteItem}>
