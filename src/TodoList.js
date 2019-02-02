@@ -4,24 +4,22 @@ import {
     Button,
     List,
 } from 'antd';
-const data = [
-    'Racing car sprays burning fuel into crowd.',
-    'Japanese princess to wed commoner.',
-    'Australian walks 100km after outback crash.',
-    'Man charged over missing wedding girl.',
-    'Los Angeles battles huge wildfires.',
-];
+import store from './store/index';
 class TodoList extends Component {
+    constructor (props) {
+        super(props);
+        this.status = store.getState();
+    }
     render () {
         return (
             <div style={{marginTop: '10px'}}>
-                <Input placeholder = "Todo info" style={{width: '300px', marginRight: '10px'}}/>
+                <Input placeholder = "Todo info" style={{width: '300px', marginRight: '10px'}} value={this.status.inputValue}/>
                 <Button type="primary">提交</Button>
                 <List
                     header={<div>Header</div>}
                     footer={<div>Footer</div>}
                     bordered
-                    dataSource={data}
+                    dataSource={this.status.list}
                     renderItem={item => (<List.Item>{item}</List.Item>)}
                     style={{marginTop: '10px'}}
                 />
