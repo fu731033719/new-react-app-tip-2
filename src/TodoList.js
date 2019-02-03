@@ -5,6 +5,11 @@ import {
     List,
 } from 'antd';
 import store from './store/index';
+import {
+    CHANGE_INPUT_VALUE,
+    ADD_ITEM,
+    DELET_ITEM
+} from './store/actionTypes';
 class TodoList extends Component {
     constructor (props) {
         super(props);
@@ -16,15 +21,14 @@ class TodoList extends Component {
     }
     handleInputChange (e) {
         const action = {
-            type: 'change_input_value',
+            type: CHANGE_INPUT_VALUE,
             value: e.target.value,
         }
         store.dispatch(action);
     }
     handleAddItem () {
         const action = {
-            type: 'add_item',
-            value: [...this.state.list, this.state.inputValue]
+            type: ADD_ITEM,
         }
         store.dispatch(action);
     }
@@ -33,7 +37,7 @@ class TodoList extends Component {
     }
     hanldeDeletItem (index) {
         const action = {
-            type: 'delet_item',
+            type: DELET_ITEM,
             index
         }
         store.dispatch(action);
