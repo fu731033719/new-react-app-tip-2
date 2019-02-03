@@ -1,15 +1,11 @@
 import React, { Component } from 'react';
-import {
-    Input,
-    Button,
-    List,
-} from 'antd';
 import store from './store/index';
 import { 
     getInputChangeAction,
     addItemAction,
     deletItemAction
-} from './store/actionCreators'
+} from './store/actionCreators';
+import TodoListUI from './TodoListUI'
 class TodoList extends Component {
     constructor (props) {
         super(props);
@@ -17,6 +13,7 @@ class TodoList extends Component {
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleAddItem = this.handleAddItem.bind(this);
         this.handleStoreChange = this.handleStoreChange.bind(this);
+        this.hanldeDeletItem = this.hanldeDeletItem.bind(this);
         store.subscribe(this.handleStoreChange);
     }
     handleInputChange (e) {
@@ -35,24 +32,19 @@ class TodoList extends Component {
         store.dispatch(action);
     }
     render () {
-        return (
-            <div style={{marginTop: '10px'}}>
-                <Input 
-                placeholder = "Todo info" style={{width: '300px', marginRight: '10px'}} 
-                value={this.state.inputValue}
-                onChange={this.handleInputChange}
-                />
-                <Button type="primary" onClick={this.handleAddItem}>提交</Button>
-                <List
-                    header={<div>Header</div>}
-                    footer={<div>Footer</div>}
-                    bordered
-                    dataSource={this.state.list}
-                    renderItem={(item, index) => (<List.Item onClick={this.hanldeDeletItem.bind(this,index)}>{item}</List.Item>)}
-                    style={{marginTop: '10px'}}
-                />
-            </div>
-        )
+        return (<TodoListUI 
+        inputValue={this.state.inputValue} 
+        list={this.state.list}
+        handleInputChange = {
+            this.handleInputChange
+        }
+        handleAddItem = {
+            this.handleAddItem
+        }
+        hanldeDeletItem = {
+            this.hanldeDeletItem
+        }
+        />)
     }
 }
 export default TodoList;
