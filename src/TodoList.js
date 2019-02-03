@@ -32,7 +32,7 @@ class TodoList extends Component {
         store.dispatch(action);
     }
     render () {
-        return (<TodoListUI 
+        return (<TodoListUI
         inputValue={this.state.inputValue} 
         list={this.state.list}
         handleInputChange = {
