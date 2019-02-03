@@ -1,12 +1,6 @@
 const defaultstat = {
-    inputValue: 'Todo item',
-    list: [
-        'Racing car sprays burning fuel into crowd.',
-        'Japanese princess to wed commoner.',
-        'Australian walks 100km after outback crash.',
-        'Man charged over missing wedding girl.',
-        'Los Angeles battles huge wildfires.',
-    ],
+    inputValue: '',
+    list: [],
 };
 
 export default (state = defaultstat, action) => {
@@ -20,6 +14,12 @@ export default (state = defaultstat, action) => {
         newState.list = action.value;
         newState.inputValue = '';
         return newState;
+    }
+    if (action.type === 'delet_item') {
+        const newState = JSON.parse(JSON.stringify(state));
+        newState.list.splice(action.index, 1);
+        return newState;
+
     }
     return state;
 }
