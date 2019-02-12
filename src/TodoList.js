@@ -17,7 +17,8 @@ class TodoList extends Component {
         store.subscribe(this.handleStoreChange);
     }
     handleInputChange (e) {
-        const action = getInputChangeAction(e.target.value);
+        const edit_value = e.target.value;
+        const action = getInputChangeAction(edit_value);
         store.dispatch(action);
     }
     handleAddItem () {
