@@ -3,9 +3,11 @@ import store from './store/index';
 import { 
     getInputChangeAction,
     addItemAction,
-    deletItemAction
+    deletItemAction,
+    initListAction
 } from './store/actionCreators';
-import TodoListUI from './TodoListUI'
+import TodoListUI from './TodoListUI';
+import axios from 'axios';
 class TodoList extends Component {
     constructor (props) {
         super(props);
@@ -46,6 +48,13 @@ class TodoList extends Component {
             this.hanldeDeletItem
         }
         />)
+    }
+    componentDidMount () {
+        axios.get('/mock/list.json').then((res) => {
+            const data = res.data;
+            const action = initListAction(data);
+            store.dispatch(action);
+        })
     }
 }
 export default TodoList;
