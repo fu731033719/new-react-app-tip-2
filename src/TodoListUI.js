@@ -19,7 +19,7 @@ const TodoListUI = (props) => {
                     footer={<div>Footer</div>}
                     bordered
                     dataSource={props.list}
-                    renderItem={(item, index) => (<List.Item onClick={(index) => {props.hanldeDeletItem(index)}}>{item}</List.Item>)}
+                    renderItem={(item, index) => (<List.Item onClick={() => {props.hanldeDeletItem(index)}}>{item}</List.Item>)}
                     style={{marginTop: '10px'}}
                 />
             </div>
