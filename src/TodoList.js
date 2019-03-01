@@ -43,7 +43,7 @@ const mapDispatchToProps = (dispatch) => {
       const action = addItemAction();
       dispatch(action);
     },
-    handleDeletItem(index) {
+    handleDeletItem (index) {
       const action = deletItemAction(index);
       dispatch(action);
     },

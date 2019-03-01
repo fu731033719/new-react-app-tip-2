@@ -5,6 +5,7 @@ import 'antd/dist/antd.css';
 import './base.css';
 import { Provider } from 'react-redux';
 import store from './store';
+
 const App = (
   <Provider store = {store}>
     <TodoList />
