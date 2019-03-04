@@ -5,7 +5,7 @@ import {
 import axios from 'axios';
 import {
   initListAction
-} from './actionCreators';
+} from './actionCreators';     
 function* getInitList () {
   try {
     const list_res = yield axios.get('/mock/list.json');
